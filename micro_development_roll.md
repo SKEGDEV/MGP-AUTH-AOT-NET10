@@ -136,6 +136,27 @@ CREATE TABLE userRestoreCode (
   userRestoreCodeIsUsed INTEGER NOT NULL DEFAULT 0, -- 0=False, 1=True
   userRestoreCodeDateCreated TEXT NOT NULL -- Store as ISO8601 string
 );
+```
+
+# 7. Configuration & Dependency Injection (Settings)
+
+* **Dependency Injection Rule:** All application configurations must be injected via the Dependency Injection container in `Program.cs` to ensure decoupling. Direct access to `IConfiguration` or `Environment` inside business logic or repositories is strictly forbidden.
+* **Interfaces & Implementations:**
+  * Define an `ISettings` interface inside the `Core` layer (under `Interfaces`).
+  * Define a concrete `Settings` class that implements `ISettings` and maps to the configuration structure.
+* **Storage in appsettings.json:** All custom configuration settings, including the database connection string, must be nested inside a parent `"Settings"` block in `appsettings.json`.
+* **Example JSON structure:**
+  ```json
+  {
+    "Settings": {
+      "ConnectionString": "Data Source=auth.db",
+      "TokenSecret": "your-very-secure-jwt-secret-key",
+      "TokenExpirationInMinutes": 60
+    }
+  }
+  ```
+
+---
 
 # Agent Instructions for New Features
 

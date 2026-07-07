@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Configuration;
 using AuthMicroservice.Core.Interfaces;
 using AuthMicroservice.Core.DTOs.Requests;
 
@@ -10,9 +9,9 @@ public class UserRepository : IUserRepository
 {
     private readonly string _connectionString;
 
-    public UserRepository(IConfiguration configuration)
+    public UserRepository(ISettings settings)
     {
-        _connectionString = configuration.GetConnectionString("DefaultConnection") ?? "Data Source=auth.db";
+        _connectionString = settings.ConnectionString;
     }
 
     public int GetUserCount(string email, string? username, string isoCountry)

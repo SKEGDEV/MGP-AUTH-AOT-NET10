@@ -4,23 +4,22 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using AuthMicroservice.Core.Interfaces;
-using Microsoft.Extensions.Configuration;
 
 namespace AuthMicroservice.Application.Helpers;
 
 public class JwtHelper : IJwtHelper
 {
-    private readonly string _secret;
+    private readonly ISettings _settings;
 
-    public JwtHelper(IConfiguration configuration)
+    public JwtHelper(ISettings settings)
     {
-        _secret = configuration["Jwt:Secret"] ?? "SuperSecretKeyForDevelopmentPurposesOnly123!";
+        _settings = settings;
     }
 
     public (string SessionToken, string RefreshToken) CreateSession(string userUID, string userFullName, string userEmail)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_secret);
+        var key = Encoding.ASCII.GetBytes(_settings.TokenSecret);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[]
@@ -29,7 +28,7 @@ public class JwtHelper : IJwtHelper
                 new Claim(ClaimTypes.Name, userFullName),
                 new Claim(ClaimTypes.Email, userEmail)
             }),
-            Expires = DateTime.UtcNow.AddMinutes(15),
+            Expires = DateTime.UtcNow.AddMinutes(_settings.TokenExpirationInMinutes),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -43,7 +42,7 @@ public class JwtHelper : IJwtHelper
     public (bool IsValid, bool IsExpired) ValidateToken(string token)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_secret);
+        var key = Encoding.ASCII.GetBytes(_settings.TokenSecret);
 
         try
         {

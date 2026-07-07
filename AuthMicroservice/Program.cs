@@ -9,6 +9,7 @@ using AuthMicroservice.Infrastructure.Repositories;
 using AuthMicroservice.Controllers;
 using AuthMicroservice.Middleware;
 using AuthMicroservice.Core.Serialization;
+using AuthMicroservice.Core.Settings;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
@@ -16,6 +17,11 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 {
     options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default);
 });
+
+// Bind and Register Settings
+var settings = builder.Configuration.GetSection("Settings").Get<Settings>()
+               ?? throw new InvalidOperationException("Settings section is missing or invalid.");
+builder.Services.AddSingleton<ISettings>(settings);
 
 // Register Dependencies
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
