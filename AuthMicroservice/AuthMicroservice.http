@@ -1,0 +1,11 @@
+@AuthMicroservice_HostAddress = http://localhost:5196
+
+GET {{AuthMicroservice_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{AuthMicroservice_HostAddress}}/todos/1
+Accept: application/json
+
+###

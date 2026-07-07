@@ -1,0 +1,164 @@
+{
+  "version": "30.2.7",
+  "pages": [
+    {
+      "id": "VPczj_7NV9usy_RAw82A",
+      "name": "Page-1",
+      "cells": [
+        {
+          "id": "1",
+          "type": "layer"
+        },
+        {
+          "id": "EjNJewjGPVCZzoDzdGb2-1",
+          "type": "node",
+          "parent": "1",
+          "label": "Start"
+        },
+        {
+          "id": "gmbHr_J8USQjZvDgAthO-1",
+          "type": "node",
+          "parent": "1",
+          "label": "Excecutes query what gets only the count of all rows where user emails and user name and iso country match"
+        },
+        {
+          "id": "gmbHr_J8USQjZvDgAthO-2",
+          "type": "edge",
+          "parent": "1",
+          "source": "EjNJewjGPVCZzoDzdGb2-1",
+          "target": "gmbHr_J8USQjZvDgAthO-1"
+        },
+        {
+          "id": "gmbHr_J8USQjZvDgAthO-9",
+          "type": "edge",
+          "parent": "1",
+          "source": "gmbHr_J8USQjZvDgAthO-3",
+          "target": "gmbHr_J8USQjZvDgAthO-6"
+        },
+        {
+          "id": "gmbHr_J8USQjZvDgAthO-10",
+          "type": "node",
+          "parent": "gmbHr_J8USQjZvDgAthO-9",
+          "label": "Yes"
+        },
+        {
+          "id": "gmbHr_J8USQjZvDgAthO-3",
+          "type": "node",
+          "parent": "1",
+          "label": "user count &gt; 0"
+        },
+        {
+          "id": "gmbHr_J8USQjZvDgAthO-4",
+          "type": "edge",
+          "parent": "1",
+          "source": "gmbHr_J8USQjZvDgAthO-1",
+          "target": "gmbHr_J8USQjZvDgAthO-3"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-2",
+          "type": "edge",
+          "parent": "1",
+          "source": "gmbHr_J8USQjZvDgAthO-6",
+          "target": "XaMFIP0RcrB5hQMW9ojp-1"
+        },
+        {
+          "id": "gmbHr_J8USQjZvDgAthO-6",
+          "type": "node",
+          "parent": "1",
+          "label": "throw an custom exception with status code 409, and error says user duplicated please go to signing"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-1",
+          "type": "node",
+          "parent": "1",
+          "label": "Middleware catch exception an returns JSON with status code 409 conflict and error code AUTH001"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-3",
+          "type": "node",
+          "parent": "1",
+          "label": "End"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-4",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-1",
+          "target": "XaMFIP0RcrB5hQMW9ojp-3"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-9",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-6",
+          "target": "XaMFIP0RcrB5hQMW9ojp-8"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-6",
+          "type": "node",
+          "parent": "1",
+          "label": "Inserts user on DB and returns new GUID to create session"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-7",
+          "type": "edge",
+          "parent": "1",
+          "source": "gmbHr_J8USQjZvDgAthO-3",
+          "target": "XaMFIP0RcrB5hQMW9ojp-6"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-14",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-8",
+          "target": "XaMFIP0RcrB5hQMW9ojp-12"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-8",
+          "type": "node",
+          "parent": "1",
+          "label": "Calls create session function who's returns refresh token and session token as string"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-16",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-12",
+          "target": "XaMFIP0RcrB5hQMW9ojp-15"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-12",
+          "type": "node",
+          "parent": "1",
+          "label": "Upsert to DB with new session created don't returns anything"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-18",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-15",
+          "target": "XaMFIP0RcrB5hQMW9ojp-17"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-15",
+          "type": "node",
+          "parent": "1",
+          "label": "Creates response DTO formating user information and session data on a standard response DTO and success message code OK001"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-17",
+          "type": "node",
+          "parent": "1",
+          "label": "Returns succesfull with status code 200"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-19",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-17",
+          "target": "XaMFIP0RcrB5hQMW9ojp-3"
+        }
+      ]
+    }
+  ]
+}

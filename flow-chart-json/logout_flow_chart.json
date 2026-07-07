@@ -1,0 +1,60 @@
+{
+  "version": "30.2.7",
+  "pages": [
+    {
+      "id": "SU0kpo4SVW2kbwPWmFBt",
+      "name": "Page-1",
+      "cells": [
+        {
+          "id": "1",
+          "type": "layer"
+        },
+        {
+          "id": "4fbtaeExShUZstuHV1iJ-3",
+          "type": "edge",
+          "parent": "1",
+          "source": "4fbtaeExShUZstuHV1iJ-1",
+          "target": "4fbtaeExShUZstuHV1iJ-2"
+        },
+        {
+          "id": "4fbtaeExShUZstuHV1iJ-1",
+          "type": "node",
+          "parent": "1",
+          "label": "Start"
+        },
+        {
+          "id": "4fbtaeExShUZstuHV1iJ-5",
+          "type": "edge",
+          "parent": "1",
+          "source": "4fbtaeExShUZstuHV1iJ-2",
+          "target": "4fbtaeExShUZstuHV1iJ-4"
+        },
+        {
+          "id": "4fbtaeExShUZstuHV1iJ-2",
+          "type": "node",
+          "parent": "1",
+          "label": "Delete from session table filter by refresh token"
+        },
+        {
+          "id": "4fbtaeExShUZstuHV1iJ-9",
+          "type": "edge",
+          "parent": "1",
+          "source": "4fbtaeExShUZstuHV1iJ-4",
+          "target": "4fbtaeExShUZstuHV1iJ-8"
+        },
+        {
+          "id": "4fbtaeExShUZstuHV1iJ-4",
+          "type": "node",
+          "parent": "1",
+          "label": "Make standard response with success = true"
+        },
+        {
+          "id": "4fbtaeExShUZstuHV1iJ-8",
+          "type": "node",
+          "parent": "1",
+          "label": "Returns response with status code 200"
+        }
+      ]
+    }
+  ]
+}

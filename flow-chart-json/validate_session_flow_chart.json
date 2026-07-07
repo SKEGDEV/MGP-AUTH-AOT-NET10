@@ -1,0 +1,370 @@
+{
+  "version": "30.2.7",
+  "pages": [
+    {
+      "id": "VPczj_7NV9usy_RAw82A",
+      "name": "Page-1",
+      "cells": [
+        {
+          "id": "1",
+          "type": "layer"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-3",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-1",
+          "target": "DIRg4sj0fgqbFzv9eqUM-2"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-1",
+          "type": "node",
+          "parent": "1",
+          "label": "Start"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-2",
+          "type": "node",
+          "parent": "1",
+          "label": "Using JWT helper uses function to validate if sign with JWT secret key are okay and if that are expired. Returns two bool per sentence sign and expired"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-9",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-4",
+          "target": "DIRg4sj0fgqbFzv9eqUM-6"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-10",
+          "type": "node",
+          "parent": "DIRg4sj0fgqbFzv9eqUM-9",
+          "label": "No"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-4",
+          "type": "node",
+          "parent": "1",
+          "label": "JWT sign are okay?"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-5",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-2",
+          "target": "DIRg4sj0fgqbFzv9eqUM-4"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-12",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-6",
+          "target": "DIRg4sj0fgqbFzv9eqUM-11"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-6",
+          "type": "node",
+          "parent": "1",
+          "label": "throws an custom exception with error code AUTH003 with error message: token malformed please re signin with yours credentials"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-11",
+          "type": "node",
+          "parent": "1",
+          "label": "returns from middleware standar response with error with status code 409 conflict"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-16",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-13",
+          "target": "DIRg4sj0fgqbFzv9eqUM-15"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-17",
+          "type": "node",
+          "parent": "DIRg4sj0fgqbFzv9eqUM-16",
+          "label": "No"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-13",
+          "type": "node",
+          "parent": "1",
+          "label": "JWT are expired?"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-14",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-4",
+          "target": "DIRg4sj0fgqbFzv9eqUM-13"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-18",
+          "type": "node",
+          "parent": "DIRg4sj0fgqbFzv9eqUM-14",
+          "label": "Yes"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-20",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-15",
+          "target": "DIRg4sj0fgqbFzv9eqUM-19"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-15",
+          "type": "node",
+          "parent": "1",
+          "label": "Makes standar response with success = true and data = null because doesn't renoves JWT"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-19",
+          "type": "node",
+          "parent": "1",
+          "label": "Returns response with status code 200"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-21",
+          "type": "node",
+          "parent": "1",
+          "label": "go to DB and get userSessionExpiresDate filter by refresh token if doesn't exist returns null"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-22",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-13",
+          "target": "DIRg4sj0fgqbFzv9eqUM-21"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-23",
+          "type": "node",
+          "parent": "DIRg4sj0fgqbFzv9eqUM-22",
+          "label": "Yes"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-31",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-24",
+          "target": "DIRg4sj0fgqbFzv9eqUM-26"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-32",
+          "type": "node",
+          "parent": "DIRg4sj0fgqbFzv9eqUM-31",
+          "label": "Yes"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-34",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-24",
+          "target": "DIRg4sj0fgqbFzv9eqUM-33"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-35",
+          "type": "node",
+          "parent": "DIRg4sj0fgqbFzv9eqUM-34",
+          "label": "No"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-24",
+          "type": "node",
+          "parent": "1",
+          "label": "result is null?"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-25",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-21",
+          "target": "DIRg4sj0fgqbFzv9eqUM-24"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-29",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-26",
+          "target": "DIRg4sj0fgqbFzv9eqUM-28"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-26",
+          "type": "node",
+          "parent": "1",
+          "label": "throws custom exception with error code AUTH004 with message: session doesn't exist please re signin"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-28",
+          "type": "node",
+          "parent": "1",
+          "label": "returns from middleware standar response with error with status code 401 unauthorized"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-33",
+          "type": "node",
+          "parent": "1",
+          "label": "Use expires date obtained by DB and save on a variable if that is expired or not"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-41",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-36",
+          "target": "DIRg4sj0fgqbFzv9eqUM-39"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-42",
+          "type": "node",
+          "parent": "DIRg4sj0fgqbFzv9eqUM-41",
+          "label": "Yes"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-36",
+          "type": "node",
+          "parent": "1",
+          "label": "Is expired refresh token?"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-37",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-33",
+          "target": "DIRg4sj0fgqbFzv9eqUM-36"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-38",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-39",
+          "target": "DIRg4sj0fgqbFzv9eqUM-40"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-39",
+          "type": "node",
+          "parent": "1",
+          "label": "throws custom exception with error code AUTH005 with message: session expires please re signin to continue"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-40",
+          "type": "node",
+          "parent": "1",
+          "label": "returns from middleware standar response with error with status code 401 unauthorized"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-47",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-43",
+          "target": "DIRg4sj0fgqbFzv9eqUM-46"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-43",
+          "type": "node",
+          "parent": "1",
+          "label": "using joins go to DB and gets necesary data to using current function from JWT helper to create a new JWT and new refresh token filter by refresh token"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-44",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-36",
+          "target": "DIRg4sj0fgqbFzv9eqUM-43"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-45",
+          "type": "node",
+          "parent": "DIRg4sj0fgqbFzv9eqUM-44",
+          "label": "No"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-49",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-46",
+          "target": "DIRg4sj0fgqbFzv9eqUM-48"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-46",
+          "type": "node",
+          "parent": "1",
+          "label": "using JWT helper creates the new token and refresh token"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-51",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-48",
+          "target": "DIRg4sj0fgqbFzv9eqUM-50"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-48",
+          "type": "node",
+          "parent": "1",
+          "label": "go to DB and update user session refresh token with the new refresh token filter by old refresh token"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-54",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-50",
+          "target": "DIRg4sj0fgqbFzv9eqUM-53"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-50",
+          "type": "node",
+          "parent": "1",
+          "label": "Make standar response with refreshDTO return new token and new refresh token"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-53",
+          "type": "node",
+          "parent": "1",
+          "label": "Returns response with status code 200"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-55",
+          "type": "node",
+          "parent": "1",
+          "label": "End"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-56",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-28",
+          "target": "DIRg4sj0fgqbFzv9eqUM-55"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-57",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-40",
+          "target": "DIRg4sj0fgqbFzv9eqUM-55"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-58",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-53",
+          "target": "DIRg4sj0fgqbFzv9eqUM-55"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-59",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-19",
+          "target": "DIRg4sj0fgqbFzv9eqUM-55"
+        },
+        {
+          "id": "DIRg4sj0fgqbFzv9eqUM-60",
+          "type": "edge",
+          "parent": "1",
+          "source": "DIRg4sj0fgqbFzv9eqUM-11",
+          "target": "DIRg4sj0fgqbFzv9eqUM-55"
+        }
+      ]
+    }
+  ]
+}

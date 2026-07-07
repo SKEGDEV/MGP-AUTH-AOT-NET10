@@ -1,0 +1,189 @@
+{
+  "version": "30.2.7",
+  "pages": [
+    {
+      "id": "VPczj_7NV9usy_RAw82A",
+      "name": "Page-1",
+      "cells": [
+        {
+          "id": "1",
+          "type": "layer"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-4",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-2",
+          "target": "gVhDDKvkOcI6O6a92loP-3"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-2",
+          "type": "node",
+          "parent": "1",
+          "label": "Start"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-3",
+          "type": "node",
+          "parent": "1",
+          "label": "Catch request and validate notation's from entry JSON vs DTO using an dictionary who's match endpoint with their DTO"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-8",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-5",
+          "target": "gVhDDKvkOcI6O6a92loP-7"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-14",
+          "type": "node",
+          "parent": "gVhDDKvkOcI6O6a92loP-8",
+          "label": "No"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-20",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-5",
+          "target": "gVhDDKvkOcI6O6a92loP-19"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-24",
+          "type": "node",
+          "parent": "gVhDDKvkOcI6O6a92loP-20",
+          "label": "Yes"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-5",
+          "type": "node",
+          "parent": "1",
+          "label": "JSON notation's is okay?"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-6",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-3",
+          "target": "gVhDDKvkOcI6O6a92loP-5"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-10",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-7",
+          "target": "gVhDDKvkOcI6O6a92loP-9"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-7",
+          "type": "node",
+          "parent": "1",
+          "label": "Make an error message to user with what's request is wrong like \"password don't have minimun length | First Name is required | etc...\""
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-13",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-9",
+          "target": "gVhDDKvkOcI6O6a92loP-12"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-9",
+          "type": "node",
+          "parent": "1",
+          "label": "throw error with message validation using error code: VAL000N depends what field is wrong. So all fields who's require notations has their error code and their message, and also the codes can form an codes array like error message VAL001 | VAL002 | VAL000N"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-12",
+          "type": "node",
+          "parent": "1",
+          "label": "Returns standard response with errors and status code 400 bad request."
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-15",
+          "type": "node",
+          "parent": "1",
+          "label": "End"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-17",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-12",
+          "target": "gVhDDKvkOcI6O6a92loP-15"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-19",
+          "type": "node",
+          "parent": "1",
+          "label": "Continue with process functions returns result to controller"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-23",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-21",
+          "target": "gVhDDKvkOcI6O6a92loP-19"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-25",
+          "type": "node",
+          "parent": "gVhDDKvkOcI6O6a92loP-23",
+          "label": "No"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-27",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-21",
+          "target": "gVhDDKvkOcI6O6a92loP-26"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-28",
+          "type": "node",
+          "parent": "gVhDDKvkOcI6O6a92loP-27",
+          "label": "Yes"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-21",
+          "type": "node",
+          "parent": "1",
+          "label": "Something wrong or catch an error?"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-22",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-19",
+          "target": "gVhDDKvkOcI6O6a92loP-21"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-33",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-26",
+          "target": "gVhDDKvkOcI6O6a92loP-30"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-26",
+          "type": "node",
+          "parent": "1",
+          "label": "Make standar response using custom exception's data that has status code, error user message and errors array, if doesn't has default status code is 500 and default message code is AUT000"
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-30",
+          "type": "node",
+          "parent": "1",
+          "label": "Returns response with errors using status code catched."
+        },
+        {
+          "id": "gVhDDKvkOcI6O6a92loP-34",
+          "type": "edge",
+          "parent": "1",
+          "source": "gVhDDKvkOcI6O6a92loP-30",
+          "target": "gVhDDKvkOcI6O6a92loP-15"
+        }
+      ]
+    }
+  ]
+}

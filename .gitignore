@@ -1,0 +1,3 @@
+# Ignore bin and obj folders in the project
+[Bb]in/
+[Oo]bj/

@@ -1,0 +1,183 @@
+{
+  "version": "30.2.7",
+  "pages": [
+    {
+      "id": "VPczj_7NV9usy_RAw82A",
+      "name": "Page-1",
+      "cells": [
+        {
+          "id": "1",
+          "type": "layer"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-30",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-31",
+          "target": "XaMFIP0RcrB5hQMW9ojp-32"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-31",
+          "type": "node",
+          "parent": "1",
+          "label": "Start"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-32",
+          "type": "node",
+          "parent": "1",
+          "label": "Go to DB and filter user by email or user name and iso country returns password, user UID and full name (first name + last name)"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-40",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-33",
+          "target": "XaMFIP0RcrB5hQMW9ojp-35"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-43",
+          "type": "node",
+          "parent": "XaMFIP0RcrB5hQMW9ojp-40",
+          "label": "No"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-33",
+          "type": "node",
+          "parent": "1",
+          "label": "Returns any user?"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-34",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-32",
+          "target": "XaMFIP0RcrB5hQMW9ojp-33"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-41",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-35",
+          "target": "XaMFIP0RcrB5hQMW9ojp-36"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-35",
+          "type": "node",
+          "parent": "1",
+          "label": "throw an custom exception with status code 409, and error says user credentials are bad please retry"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-36",
+          "type": "node",
+          "parent": "1",
+          "label": "Middleware catch exception an returns JSON with status code 409 conflict and error code AUTH002"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-37",
+          "type": "node",
+          "parent": "1",
+          "label": "End"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-42",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-36",
+          "target": "XaMFIP0RcrB5hQMW9ojp-37"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-51",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-46",
+          "target": "XaMFIP0RcrB5hQMW9ojp-35"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-52",
+          "type": "node",
+          "parent": "XaMFIP0RcrB5hQMW9ojp-51",
+          "label": "No"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-54",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-46",
+          "target": "XaMFIP0RcrB5hQMW9ojp-53"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-46",
+          "type": "node",
+          "parent": "1",
+          "label": "Using crypto helper password DTO match with password DB?"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-49",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-33",
+          "target": "XaMFIP0RcrB5hQMW9ojp-46"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-50",
+          "type": "node",
+          "parent": "XaMFIP0RcrB5hQMW9ojp-49",
+          "label": "Yes"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-53",
+          "type": "node",
+          "parent": "1",
+          "label": "Calls JWT helper to create a session returns refresh token and session token"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-58",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-55",
+          "target": "XaMFIP0RcrB5hQMW9ojp-57"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-55",
+          "type": "node",
+          "parent": "1",
+          "label": "Upsert to data base with new session"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-56",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-53",
+          "target": "XaMFIP0RcrB5hQMW9ojp-55"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-60",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-57",
+          "target": "XaMFIP0RcrB5hQMW9ojp-59"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-57",
+          "type": "node",
+          "parent": "1",
+          "label": "Format response with user's data and session's data"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-59",
+          "type": "node",
+          "parent": "1",
+          "label": "Returns response with status code 200 and success code OK002"
+        },
+        {
+          "id": "XaMFIP0RcrB5hQMW9ojp-61",
+          "type": "edge",
+          "parent": "1",
+          "source": "XaMFIP0RcrB5hQMW9ojp-59",
+          "target": "XaMFIP0RcrB5hQMW9ojp-37"
+        }
+      ]
+    }
+  ]
+}
