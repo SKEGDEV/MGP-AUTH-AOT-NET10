@@ -186,4 +186,88 @@ public class UserRepository : IUserRepository
         
         command.ExecuteNonQuery();
     }
+
+    public string? GetUserUidByEmailAndCountry(string email, string isoCountry)
+    {
+        using var connection = new SqliteConnection(_connectionString);
+        connection.Open();
+
+        var query = "SELECT userUID FROM user WHERE userEmail = @email AND userIsoCountry = @isoCountry";
+        using var command = new SqliteCommand(query, connection);
+        command.Parameters.AddWithValue("@email", email);
+        command.Parameters.AddWithValue("@isoCountry", isoCountry);
+
+        var result = command.ExecuteScalar();
+        if (result != null && result != DBNull.Value)
+        {
+            return result.ToString();
+        }
+
+        return null;
+    }
+
+    public void InsertRestoreCode(string userUID, string restoreCode, string dateCreated)
+    {
+        using var connection = new SqliteConnection(_connectionString);
+        connection.Open();
+
+        var query = @"
+            INSERT INTO userRestoreCode (userRestoreCode, userRestoreCodeUserUID, userRestoreCodeDateCreated)
+            VALUES (@code, @userUID, @dateCreated)";
+
+        using var command = new SqliteCommand(query, connection);
+        command.Parameters.AddWithValue("@code", restoreCode);
+        command.Parameters.AddWithValue("@userUID", userUID);
+        command.Parameters.AddWithValue("@dateCreated", dateCreated);
+
+        command.ExecuteNonQuery();
+    }
+
+    public string? GetRestoreCodeDate(string restoreCode, string email, string isoCountry)
+    {
+        using var connection = new SqliteConnection(_connectionString);
+        connection.Open();
+
+        var query = @"
+            SELECT urc.userRestoreCodeDateCreated
+            FROM userRestoreCode urc
+            INNER JOIN user u ON u.userUID = urc.userRestoreCodeUserUID
+            WHERE urc.userRestoreCode = @code
+              AND u.userEmail = @email
+              AND u.userIsoCountry = @isoCountry
+              AND urc.userRestoreCodeIsUsed = 0";
+
+        using var command = new SqliteCommand(query, connection);
+        command.Parameters.AddWithValue("@code", restoreCode);
+        command.Parameters.AddWithValue("@email", email);
+        command.Parameters.AddWithValue("@isoCountry", isoCountry);
+
+        var result = command.ExecuteScalar();
+        if (result != null && result != DBNull.Value)
+        {
+            return result.ToString();
+        }
+
+        return null;
+    }
+
+    public void MarkRestoreCodeAsUsed(string restoreCode, string email, string isoCountry)
+    {
+        using var connection = new SqliteConnection(_connectionString);
+        connection.Open();
+
+        var query = @"
+            UPDATE userRestoreCode
+            SET userRestoreCodeIsUsed = 1
+            WHERE userRestoreCode = @code
+              AND userRestoreCodeUserUID IN (SELECT userUID FROM user WHERE userEmail = @email AND userIsoCountry = @isoCountry)
+              AND userRestoreCodeIsUsed = 0";
+
+        using var command = new SqliteCommand(query, connection);
+        command.Parameters.AddWithValue("@code", restoreCode);
+        command.Parameters.AddWithValue("@email", email);
+        command.Parameters.AddWithValue("@isoCountry", isoCountry);
+
+        command.ExecuteNonQuery();
+    }
 }

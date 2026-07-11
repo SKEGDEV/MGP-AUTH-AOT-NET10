@@ -161,3 +161,25 @@ By using this methodology rather than a standard SDD mega-prompt, this repositor
 - **Zero Architectural Drift:** The 4 layers remained 100% isolated. The strict role prevented me from taking common LLM shortcuts like injecting repositories directly into controllers.
 - **Flawless Execution of Complex Logic:** Complex flows, such as the Exception Handling Middleware and JWT lifecycle, were implemented flawlessly because the Mermaid charts provided the exact execution tree to follow.
 - **Conclusion:** If you want an AI to build enterprise-grade, highly optimized software, stop writing mega-prompts with endless user stories. Define your architectural boundaries strictly, and map out your business logic with flowcharts. It is the most efficient, error-free way to communicate engineering intent to an LLM.
+
+---
+
+### The Model & The Truth
+
+**Model:** `deepseek-v4-flash-free` — a freely available, mid-tier AI model. Not a frontier flagship.
+
+**The honest truth about this strategy:**
+
+With the methodology codified in this repository — strict architectural rules (`micro_development_roll.md`) + deterministic Mermaid flowcharts — **you do not need the most powerful AI models** to build production-grade software.
+
+Here is why capability becomes nearly irrelevant:
+
+1. **The constitutional guardrails (`micro_development_roll.md`)** collapse the AI's decision space into a small set of valid choices. Bad architecture is ruled out by fiat, not by the model's judgment. A weaker model cannot make a bad call if the rules forbid it.
+
+2. **The flowcharts eliminate reasoning requirements.** The AI does not infer logic from prose — it reads a directed graph of nodes and edges. This is a mechanical translation task, not a reasoning task. The ceiling on output quality is set by the flowchart's precision, not by the model's intelligence.
+
+3. **The floor rises dramatically.** A junior developer following this pattern produces code indistinguishable from a senior architect's output. A free-tier model produces code competitive with GPT-4 class output — not because it is smarter, but because the problem has been made simple enough that smart is not required.
+
+**The bottleneck in AI software development is not model capability. It is prompt structure.** This repository demonstrates that with the right structure, any model, used by any person, can build any well-specified project reliably.
+
+The strategy does not make AI smarter. It makes the problem simpler. That is a far more scalable insight.

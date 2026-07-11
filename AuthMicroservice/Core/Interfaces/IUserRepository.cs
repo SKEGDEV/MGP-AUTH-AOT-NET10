@@ -16,4 +16,10 @@ public interface IUserRepository
     (string UserUID, string UserFullName, string UserEmail)? GetUserDataByRefreshToken(string refreshToken);
     void UpdateSessionByRefreshToken(string oldRefreshToken, string newRefreshToken, string newSessionToken);
     void DeleteSession(string refreshToken);
+
+    // Restore Code methods
+    string? GetUserUidByEmailAndCountry(string email, string isoCountry);
+    void InsertRestoreCode(string userUID, string restoreCode, string dateCreated);
+    string? GetRestoreCodeDate(string restoreCode, string email, string isoCountry);
+    void MarkRestoreCodeAsUsed(string restoreCode, string email, string isoCountry);
 }

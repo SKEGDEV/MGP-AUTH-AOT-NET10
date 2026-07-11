@@ -12,12 +12,16 @@ public class AuthService : IAuthService
     private readonly IUserRepository _userRepository;
     private readonly ICryptoHelper _cryptoHelper;
     private readonly IJwtHelper _jwtHelper;
+    private readonly IRestoreCodeHelper _restoreCodeHelper;
+    private readonly ISettings _settings;
 
-    public AuthService(IUserRepository userRepository, ICryptoHelper cryptoHelper, IJwtHelper jwtHelper)
+    public AuthService(IUserRepository userRepository, ICryptoHelper cryptoHelper, IJwtHelper jwtHelper, IRestoreCodeHelper restoreCodeHelper, ISettings settings)
     {
         _userRepository = userRepository;
         _cryptoHelper = cryptoHelper;
         _jwtHelper = jwtHelper;
+        _restoreCodeHelper = restoreCodeHelper;
+        _settings = settings;
     }
 
     public StandardResponseDTO<AuthResponseDTO> Signup(SignupRequestDTO request)
@@ -188,6 +192,104 @@ public class AuthService : IAuthService
                 Message = MessageDictionary.GetMessage("OK004"),
                 Data = null
             };
+        }
+        catch (Exception ex)
+        {
+            throw new CustomAuthException(500, "AUT000", MessageDictionary.GetMessage("AUT000") + ": " + ex.Message);
+        }
+    }
+
+    public StandardResponseDTO<CreateRestoreCodeResponseDTO> CreateRestoreCode(CreateRestoreCodeRequestDTO request)
+    {
+        try
+        {
+            var userUID = _userRepository.GetUserUidByEmailAndCountry(request.UserEmail, request.UserIsoCountry);
+
+            if (userUID == null)
+            {
+                return new StandardResponseDTO<CreateRestoreCodeResponseDTO>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Message = string.Empty,
+                    Data = new CreateRestoreCodeResponseDTO
+                    {
+                        Email = new EmailDTO<string>
+                        {
+                            EmailSend = false,
+                            EmailContent = string.Empty,
+                            EmailToSend = string.Empty,
+                            TemplateID = string.Empty
+                        }
+                    }
+                };
+            }
+
+            var restoreCode = _restoreCodeHelper.GenerateRestoreCode();
+            var dateCreated = DateTime.UtcNow.ToString("O");
+            _userRepository.InsertRestoreCode(userUID, restoreCode, dateCreated);
+
+            return new StandardResponseDTO<CreateRestoreCodeResponseDTO>
+            {
+                StatusCode = 200,
+                Success = true,
+                Message = string.Empty,
+                Data = new CreateRestoreCodeResponseDTO
+                {
+                    Email = new EmailDTO<string>
+                    {
+                        EmailSend = true,
+                        EmailContent = restoreCode,
+                        EmailToSend = request.UserEmail,
+                        TemplateID = _settings.EmailTemplateIdRestore
+                    }
+                }
+            };
+        }
+        catch (CustomAuthException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            throw new CustomAuthException(500, "AUT000", MessageDictionary.GetMessage("AUT000") + ": " + ex.Message);
+        }
+    }
+
+    public StandardResponseDTO<object?> ValidateRestoreCode(ValidateRestoreCodeRequestDTO request)
+    {
+        try
+        {
+            var dateCreatedStr = _userRepository.GetRestoreCodeDate(request.RestoreCode, request.UserEmail, request.UserIsoCountry);
+
+            if (dateCreatedStr == null)
+            {
+                throw new CustomAuthException(403, "AUTH006", MessageDictionary.GetMessage("AUTH006"));
+            }
+
+            if (!DateTime.TryParse(dateCreatedStr, out var dateCreated))
+            {
+                throw new CustomAuthException(403, "AUTH006", MessageDictionary.GetMessage("AUTH006"));
+            }
+
+            if (dateCreated < DateTime.UtcNow.AddMinutes(-15))
+            {
+                throw new CustomAuthException(403, "AUTH007", MessageDictionary.GetMessage("AUTH007"));
+            }
+
+            _userRepository.MarkRestoreCodeAsUsed(request.RestoreCode, request.UserEmail, request.UserIsoCountry);
+
+            return new StandardResponseDTO<object?>
+            {
+                StatusCode = 200,
+                Success = true,
+                Message = MessageDictionary.GetMessage("OK005"),
+                Data = null
+            };
+        }
+        catch (CustomAuthException)
+        {
+            throw;
         }
         catch (Exception ex)
         {

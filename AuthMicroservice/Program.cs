@@ -27,6 +27,7 @@ builder.Services.AddSingleton<ISettings>(settings);
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
 builder.Services.AddSingleton<ICryptoHelper, CryptoHelper>();
 builder.Services.AddSingleton<IJwtHelper, JwtHelper>();
+builder.Services.AddSingleton<IRestoreCodeHelper, RestoreCodeHelper>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
 
 var app = builder.Build();

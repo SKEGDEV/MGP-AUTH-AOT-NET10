@@ -33,5 +33,17 @@ public static class AuthEndpoints
             var result = authService.Logout(refreshToken);
             return Results.Ok(result);
         });
+
+        app.MapPost("/create-restore-code", ([FromBody] CreateRestoreCodeRequestDTO request, IAuthService authService) =>
+        {
+            var result = authService.CreateRestoreCode(request);
+            return Results.Ok(result);
+        });
+
+        app.MapPost("/validate-restore-code", ([FromBody] ValidateRestoreCodeRequestDTO request, IAuthService authService) =>
+        {
+            var result = authService.ValidateRestoreCode(request);
+            return Results.Ok(result);
+        });
     }
 }

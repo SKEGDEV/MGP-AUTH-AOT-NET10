@@ -1,0 +1,153 @@
+{
+  "version": "30.3.6",
+  "pages": [
+    {
+      "id": "VPczj_7NV9usy_RAw82A",
+      "name": "Page-1",
+      "cells": [
+        {
+          "id": "lVpX-W2iIiuZlrBVPK-6-1",
+          "type": "node",
+          "parent": "1",
+          "label": "Start"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-1",
+          "type": "node",
+          "parent": "1",
+          "label": "Go to DB and get userUID filter by email or userName and isoCountry"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-2",
+          "type": "edge",
+          "parent": "1",
+          "source": "lVpX-W2iIiuZlrBVPK-6-1",
+          "target": "t81Kd6lnmY1LuOZOWr3Z-1"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-6",
+          "type": "edge",
+          "parent": "1",
+          "source": "t81Kd6lnmY1LuOZOWr3Z-3",
+          "target": "t81Kd6lnmY1LuOZOWr3Z-5"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-7",
+          "type": "node",
+          "parent": "t81Kd6lnmY1LuOZOWr3Z-6",
+          "label": "No"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-9",
+          "type": "edge",
+          "parent": "1",
+          "source": "t81Kd6lnmY1LuOZOWr3Z-3",
+          "target": "t81Kd6lnmY1LuOZOWr3Z-8"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-10",
+          "type": "node",
+          "parent": "t81Kd6lnmY1LuOZOWr3Z-9",
+          "label": "Yes"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-3",
+          "type": "node",
+          "parent": "1",
+          "label": "Result returns userUID?"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-4",
+          "type": "edge",
+          "parent": "1",
+          "source": "t81Kd6lnmY1LuOZOWr3Z-1",
+          "target": "t81Kd6lnmY1LuOZOWr3Z-3"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-14",
+          "type": "edge",
+          "parent": "1",
+          "source": "t81Kd6lnmY1LuOZOWr3Z-5",
+          "target": "t81Kd6lnmY1LuOZOWr3Z-13"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-5",
+          "type": "node",
+          "parent": "1",
+          "label": "Make standard response without restore code and emailSend = false"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-8",
+          "type": "node",
+          "parent": "1",
+          "label": "Create restore code using Helper called helperTool"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-16",
+          "type": "edge",
+          "parent": "1",
+          "source": "t81Kd6lnmY1LuOZOWr3Z-11",
+          "target": "t81Kd6lnmY1LuOZOWr3Z-15"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-11",
+          "type": "node",
+          "parent": "1",
+          "label": "Save on DB data to in the other step will validate (created date are datetime now)"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-12",
+          "type": "edge",
+          "parent": "1",
+          "source": "t81Kd6lnmY1LuOZOWr3Z-8",
+          "target": "t81Kd6lnmY1LuOZOWr3Z-11"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-13",
+          "type": "node",
+          "parent": "1",
+          "label": "Return response with status code 200"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-18",
+          "type": "edge",
+          "parent": "1",
+          "source": "t81Kd6lnmY1LuOZOWr3Z-15",
+          "target": "t81Kd6lnmY1LuOZOWr3Z-17"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-15",
+          "type": "node",
+          "parent": "1",
+          "label": "Make standard response using the created code and email requested with emailSend=true"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-17",
+          "type": "node",
+          "parent": "1",
+          "label": "Return response with status code 200"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-19",
+          "type": "node",
+          "parent": "1",
+          "label": "End"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-20",
+          "type": "edge",
+          "parent": "1",
+          "source": "t81Kd6lnmY1LuOZOWr3Z-17",
+          "target": "t81Kd6lnmY1LuOZOWr3Z-19"
+        },
+        {
+          "id": "t81Kd6lnmY1LuOZOWr3Z-21",
+          "type": "edge",
+          "parent": "1",
+          "source": "t81Kd6lnmY1LuOZOWr3Z-13",
+          "target": "t81Kd6lnmY1LuOZOWr3Z-19"
+        }
+      ]
+    }
+  ]
+}

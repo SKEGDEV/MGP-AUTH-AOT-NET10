@@ -9,4 +9,6 @@ public interface IAuthService
     StandardResponseDTO<AuthResponseDTO> Signin(SigninRequestDTO request);
     StandardResponseDTO<SessionResponseDTO?> ValidateSession(SessionRequestDTO request);
     StandardResponseDTO<object?> Logout(string refreshToken);
+    StandardResponseDTO<CreateRestoreCodeResponseDTO> CreateRestoreCode(CreateRestoreCodeRequestDTO request);
+    StandardResponseDTO<object?> ValidateRestoreCode(ValidateRestoreCodeRequestDTO request);
 }

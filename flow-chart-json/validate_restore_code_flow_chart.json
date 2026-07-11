@@ -1,0 +1,186 @@
+{
+  "version": "30.3.6",
+  "pages": [
+    {
+      "id": "__k7SHyti17NHuvlwsqn",
+      "name": "Page-2",
+      "cells": [
+        {
+          "id": "Icu8CjmSnApW7oxSSPFp-1",
+          "type": "node",
+          "parent": "1",
+          "label": "Start"
+        },
+        {
+          "id": "jJ4pBdlQiVb34Q9Mvv9W-2",
+          "type": "edge",
+          "parent": "1",
+          "source": "Icu8CjmSnApW7oxSSPFp-3",
+          "target": "jJ4pBdlQiVb34Q9Mvv9W-1"
+        },
+        {
+          "id": "Icu8CjmSnApW7oxSSPFp-3",
+          "type": "node",
+          "parent": "1",
+          "label": "go to DB and get created date filter by restore code and email using inner join and isUsed = 0"
+        },
+        {
+          "id": "Icu8CjmSnApW7oxSSPFp-4",
+          "type": "edge",
+          "parent": "1",
+          "source": "Icu8CjmSnApW7oxSSPFp-1",
+          "target": "Icu8CjmSnApW7oxSSPFp-3"
+        },
+        {
+          "id": "jJ4pBdlQiVb34Q9Mvv9W-4",
+          "type": "edge",
+          "parent": "1",
+          "source": "jJ4pBdlQiVb34Q9Mvv9W-1",
+          "target": "jJ4pBdlQiVb34Q9Mvv9W-3"
+        },
+        {
+          "id": "jJ4pBdlQiVb34Q9Mvv9W-5",
+          "type": "node",
+          "parent": "jJ4pBdlQiVb34Q9Mvv9W-4",
+          "label": "No"
+        },
+        {
+          "id": "jJ4pBdlQiVb34Q9Mvv9W-1",
+          "type": "node",
+          "parent": "1",
+          "label": "restoreCode exist?"
+        },
+        {
+          "id": "jJ4pBdlQiVb34Q9Mvv9W-7",
+          "type": "edge",
+          "parent": "1",
+          "source": "jJ4pBdlQiVb34Q9Mvv9W-3",
+          "target": "jJ4pBdlQiVb34Q9Mvv9W-6"
+        },
+        {
+          "id": "jJ4pBdlQiVb34Q9Mvv9W-3",
+          "type": "node",
+          "parent": "1",
+          "label": "throw an custom exception with error code AUTH006 who's error message says: restore code not exist please try again"
+        },
+        {
+          "id": "jJ4pBdlQiVb34Q9Mvv9W-6",
+          "type": "node",
+          "parent": "1",
+          "label": "returns response with status code = 403 forbbiden"
+        },
+        {
+          "id": "gr0pyY1Dd4THxwf4ATAZ-2",
+          "type": "edge",
+          "parent": "1",
+          "source": "jJ4pBdlQiVb34Q9Mvv9W-8",
+          "target": "gr0pyY1Dd4THxwf4ATAZ-1"
+        },
+        {
+          "id": "gr0pyY1Dd4THxwf4ATAZ-3",
+          "type": "node",
+          "parent": "gr0pyY1Dd4THxwf4ATAZ-2",
+          "label": "No"
+        },
+        {
+          "id": "yZZKQUO9fud7xt6Hc79d-2",
+          "type": "edge",
+          "parent": "1",
+          "source": "jJ4pBdlQiVb34Q9Mvv9W-8",
+          "target": "markUsed-1"
+        },
+        {
+          "id": "jJ4pBdlQiVb34Q9Mvv9W-8",
+          "type": "node",
+          "parent": "1",
+          "label": "created date &lt; 15 minutes ago?"
+        },
+        {
+          "id": "jJ4pBdlQiVb34Q9Mvv9W-9",
+          "type": "edge",
+          "parent": "1",
+          "source": "jJ4pBdlQiVb34Q9Mvv9W-1",
+          "target": "jJ4pBdlQiVb34Q9Mvv9W-8"
+        },
+        {
+          "id": "gr0pyY1Dd4THxwf4ATAZ-5",
+          "type": "edge",
+          "parent": "1",
+          "source": "gr0pyY1Dd4THxwf4ATAZ-1",
+          "target": "gr0pyY1Dd4THxwf4ATAZ-4"
+        },
+        {
+          "id": "gr0pyY1Dd4THxwf4ATAZ-1",
+          "type": "node",
+          "parent": "1",
+          "label": "throw an custom exception with error code AUTH007 who's error message says: restore code are caducated please try again"
+        },
+        {
+          "id": "gr0pyY1Dd4THxwf4ATAZ-4",
+          "type": "node",
+          "parent": "1",
+          "label": "returns response with status code = 403 forbbiden"
+        },
+        {
+          "id": "markUsed-1",
+          "type": "node",
+          "parent": "1",
+          "label": "UPDATE userRestoreCode SET isUsed = 1"
+        },
+        {
+          "id": "markUsed-2",
+          "type": "edge",
+          "parent": "1",
+          "source": "markUsed-1",
+          "target": "yZZKQUO9fud7xt6Hc79d-1"
+        },
+        {
+          "id": "yZZKQUO9fud7xt6Hc79d-4",
+          "type": "edge",
+          "parent": "1",
+          "source": "yZZKQUO9fud7xt6Hc79d-1",
+          "target": "yZZKQUO9fud7xt6Hc79d-3"
+        },
+        {
+          "id": "yZZKQUO9fud7xt6Hc79d-1",
+          "type": "node",
+          "parent": "1",
+          "label": "Make standard response with code status OK005 and data = null and success = true"
+        },
+        {
+          "id": "yZZKQUO9fud7xt6Hc79d-3",
+          "type": "node",
+          "parent": "1",
+          "label": "return response with status code 200"
+        },
+        {
+          "id": "yZZKQUO9fud7xt6Hc79d-5",
+          "type": "node",
+          "parent": "1",
+          "label": "End"
+        },
+        {
+          "id": "yZZKQUO9fud7xt6Hc79d-6",
+          "type": "edge",
+          "parent": "1",
+          "source": "yZZKQUO9fud7xt6Hc79d-3",
+          "target": "yZZKQUO9fud7xt6Hc79d-5"
+        },
+        {
+          "id": "yZZKQUO9fud7xt6Hc79d-7",
+          "type": "edge",
+          "parent": "1",
+          "source": "gr0pyY1Dd4THxwf4ATAZ-4",
+          "target": "yZZKQUO9fud7xt6Hc79d-5"
+        },
+        {
+          "id": "yZZKQUO9fud7xt6Hc79d-8",
+          "type": "edge",
+          "parent": "1",
+          "source": "jJ4pBdlQiVb34Q9Mvv9W-6",
+          "target": "yZZKQUO9fud7xt6Hc79d-5"
+        }
+      ]
+    }
+  ]
+}
