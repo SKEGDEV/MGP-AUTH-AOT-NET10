@@ -226,7 +226,7 @@ public class AuthService : IAuthService
             }
 
             var restoreCode = _restoreCodeHelper.GenerateRestoreCode();
-            var dateCreated = DateTime.UtcNow.ToString("O");
+            var dateCreated = DateTime.UtcNow.ToString();
             _userRepository.InsertRestoreCode(userUID, restoreCode, dateCreated);
 
             return new StandardResponseDTO<CreateRestoreCodeResponseDTO>
