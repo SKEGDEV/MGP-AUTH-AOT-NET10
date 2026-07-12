@@ -272,7 +272,9 @@ public class AuthService : IAuthService
                 throw new CustomAuthException(403, "AUTH006", MessageDictionary.GetMessage("AUTH006"));
             }
 
-            if (dateCreated < DateTime.UtcNow.AddMinutes(-15))
+            var diffInMinutes = (DateTime.UtcNow - dateCreated).TotalMinutes;
+
+            if (diffInMinutes >= _settings.RestoreCodeExpirationInMinutes)
             {
                 throw new CustomAuthException(403, "AUTH007", MessageDictionary.GetMessage("AUTH007"));
             }

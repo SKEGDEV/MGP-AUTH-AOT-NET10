@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using AuthMicroservice.Core.Interfaces;
 using AuthMicroservice.Application.Services;
 using AuthMicroservice.Application.Helpers;
+using AuthMicroservice.Infrastructure;
 using AuthMicroservice.Infrastructure.Repositories;
 using AuthMicroservice.Controllers;
 using AuthMicroservice.Middleware;
@@ -29,8 +30,12 @@ builder.Services.AddSingleton<ICryptoHelper, CryptoHelper>();
 builder.Services.AddSingleton<IJwtHelper, JwtHelper>();
 builder.Services.AddSingleton<IRestoreCodeHelper, RestoreCodeHelper>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
+builder.Services.AddSingleton<IDbInitializer, DbInitializer>();
 
 var app = builder.Build();
+
+// Initialize database (create directory, db file, tables, and seed data if not exists)
+app.Services.GetRequiredService<IDbInitializer>().Initialize();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 

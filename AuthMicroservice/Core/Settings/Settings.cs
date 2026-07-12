@@ -8,4 +8,5 @@ public class Settings : ISettings
     public string TokenSecret { get; set; } = string.Empty;
     public int TokenExpirationInMinutes { get; set; }
     public string EmailTemplateIdRestore { get; set; } = string.Empty;
+    public int RestoreCodeExpirationInMinutes { get; set; }
 }

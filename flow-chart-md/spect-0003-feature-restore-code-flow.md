@@ -59,7 +59,9 @@ flowchart TD
     ErrAUTH006 --> Resp403_1[returns response with status code = 403 forbbiden]
     Resp403_1 --> End([End])
     
-    CodeExist -- Yes --> CheckTime{created date < 15 minutes ago?}
+    CodeExist -- Yes --> CalcDiff[Save in a variable the difference in minutes between created date and current date]
+    CalcDiff --> GetConfig[Read RestoreCodeExpirationInMinutes from settings.json]
+    GetConfig --> CheckTime{is the calculated variable < RestoreCodeExpirationInMinutes?}
     
     CheckTime -- No --> ErrAUTH007[throw an custom exception with error code AUTH007 who's error message says: restore code are caducated please try again]
     ErrAUTH007 --> Resp403_2[returns response with status code = 403 forbbiden]
@@ -83,3 +85,5 @@ flowchart TD
 # 2.2 method = POST
 
 # 2.3 message "OK005" : "you're code are validated successfull you will complete resetore password process"
+
+# 2.4 15 minutes will be configurable by settings.json

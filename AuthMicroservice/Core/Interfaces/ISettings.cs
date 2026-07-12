@@ -6,4 +6,5 @@ public interface ISettings
     string TokenSecret { get; }
     int TokenExpirationInMinutes { get; }
     string EmailTemplateIdRestore { get; }
+    int RestoreCodeExpirationInMinutes { get; }
 }
